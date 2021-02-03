@@ -23,6 +23,5 @@ func TestModel_NewAccount(t *testing.T) {
 	require.Equal(t, account.BankID, bank.ID)
 
 	_, err = model.NewAccount(bank, "", ownerName)
-
 	require.NotNil(t, err)
 }
