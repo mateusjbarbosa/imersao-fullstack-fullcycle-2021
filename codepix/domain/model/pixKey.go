@@ -2,9 +2,10 @@ package model
 
 import (
 	"errors"
+	"time"
+
 	"github.com/asaskevich/govalidator"
 	uuid "github.com/satori/go.uuid"
-	"time"
 )
 
 type PixKeyRepositoryInterface interface {
@@ -16,7 +17,7 @@ type PixKeyRepositoryInterface interface {
 }
 
 type PixKey struct {
-	Base               `valid:"required"`
+	Base      `valid:"required"`
 	Kind      string   `json:"kind" valid:"notnull"`
 	Key       string   `json:"key" valid:"notnull"`
 	AccountID string   `json:"account_id" valid:"notnull"`
@@ -37,8 +38,8 @@ func (pixKey *PixKey) isValid() error {
 
 	if err != nil {
 		return err
-  }
-  
+	}
+
 	return nil
 }
 
@@ -52,10 +53,10 @@ func NewPixKey(kind string, account *Account, key string) (*PixKey, error) {
 
 	pixKey.ID = uuid.NewV4().String()
 	pixKey.CreatedAt = time.Now()
-	pixKey.UpdateAt = time.Now()
+	pixKey.UpdatedAt = time.Now()
 
-  err := pixKey.isValid()
-  
+	err := pixKey.isValid()
+
 	if err != nil {
 		return nil, err
 	}

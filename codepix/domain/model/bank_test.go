@@ -2,8 +2,9 @@ package model_test
 
 import (
 	"testing"
-	uuid "github.com/satori/go.uuid"
+
 	"github.com/mateusjbarbosa/imersao-fullstack-fullcycle/codepix/domain/model"
+	uuid "github.com/satori/go.uuid"
 	"github.com/stretchr/testify/require"
 )
 
@@ -18,7 +19,7 @@ func TestModel_NewBank(t *testing.T) {
 	require.Equal(t, bank.Code, code)
 	require.Equal(t, bank.Name, name)
 
-  _, err = model.NewBank("", "")
-  
+	_, err = model.NewBank("", "")
+
 	require.NotNil(t, err)
 }

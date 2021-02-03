@@ -2,8 +2,9 @@ package model_test
 
 import (
 	"testing"
-	uuid "github.com/satori/go.uuid"
+
 	"github.com/mateusjbarbosa/imersao-fullstack-fullcycle/codepix/domain/model"
+	uuid "github.com/satori/go.uuid"
 	"github.com/stretchr/testify/require"
 )
 
@@ -39,12 +40,12 @@ func TestNewTransaction(t *testing.T) {
 
 	pixKeySameAccount, err := model.NewPixKey(kind, account, key)
 
-  _, err = model.NewTransaction(account, amount, pixKeySameAccount, "My description")
-  
+	_, err = model.NewTransaction(account, amount, pixKeySameAccount, "My description")
+
 	require.NotNil(t, err)
 
-  _, err = model.NewTransaction(account, 0, pixKey, "My description")
-  
+	_, err = model.NewTransaction(account, 0, pixKey, "My description")
+
 	require.NotNil(t, err)
 }
 

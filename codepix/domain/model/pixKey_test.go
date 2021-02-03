@@ -2,8 +2,9 @@ package model_test
 
 import (
 	"testing"
-	uuid "github.com/satori/go.uuid"
+
 	"github.com/mateusjbarbosa/imersao-fullstack-fullcycle/codepix/domain/model"
+	uuid "github.com/satori/go.uuid"
 	"github.com/stretchr/testify/require"
 )
 
@@ -24,13 +25,13 @@ func TestModel_NewPixKey(t *testing.T) {
 	require.Equal(t, pixKey.Kind, kind)
 	require.Equal(t, pixKey.Status, "active")
 
-  kind = "cpf"
-  
-  _, err = model.NewPixKey(kind, account, key)
-  
+	kind = "cpf"
+
+	_, err = model.NewPixKey(kind, account, key)
+
 	require.Nil(t, err)
 
-  _, err = model.NewPixKey("nome", account, key)
-  
+	_, err = model.NewPixKey("nome", account, key)
+
 	require.NotNil(t, err)
 }

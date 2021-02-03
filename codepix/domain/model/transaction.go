@@ -2,9 +2,10 @@ package model
 
 import (
 	"errors"
+	"time"
+
 	"github.com/asaskevich/govalidator"
 	uuid "github.com/satori/go.uuid"
-	"time"
 )
 
 const (
@@ -25,7 +26,7 @@ type Transactions struct {
 }
 
 type Transaction struct {
-	Base                       `valid:"required"`
+	Base              `valid:"required"`
 	AccountFrom       *Account `valid:"-"`
 	Amount            float64  `json:"amount" valid:"notnull"`
 	PixKeyTo          *PixKey  `valid:"-"`
@@ -51,13 +52,13 @@ func (t *Transaction) isValid() error {
 
 	if err != nil {
 		return err
-  }
-  
+	}
+
 	return nil
 }
 
 func NewTransaction(accountFrom *Account, amount float64, pixKeyTo *PixKey, description string) (*Transaction, error) {
-	transaction := Transaction {
+	transaction := Transaction{
 		AccountFrom: accountFrom,
 		Amount:      amount,
 		PixKeyTo:    pixKeyTo,
@@ -69,8 +70,8 @@ func NewTransaction(accountFrom *Account, amount float64, pixKeyTo *PixKey, desc
 	transaction.CreatedAt = time.Now()
 	transaction.UpdatedAt = time.Now()
 
-  err := transaction.isValid()
-  
+	err := transaction.isValid()
+
 	if err != nil {
 		return nil, err
 	}
@@ -80,19 +81,19 @@ func NewTransaction(accountFrom *Account, amount float64, pixKeyTo *PixKey, desc
 
 func (t *Transaction) Complete() error {
 	t.Status = TransactionCompleted
-  t.UpdatedAt = time.Now()
-  
-  err := t.isValid()
-  
+	t.UpdatedAt = time.Now()
+
+	err := t.isValid()
+
 	return err
 }
 
 func (t *Transaction) Confirm() error {
 	t.Status = TransactionConfirmed
-  t.UpdatedAt = time.Now()
-  
-  err := t.isValid()
-  
+	t.UpdatedAt = time.Now()
+
+	err := t.isValid()
+
 	return err
 }
 
