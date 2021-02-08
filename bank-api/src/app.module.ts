@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { BankAccount } from './models/bank-account.model';
 import { BankAccountController } from './controllers/bank-account/bank-account.controller';
 import { ConsoleModule } from 'nestjs-console';
+import { FixturesCommand } from './fixtures/fixtures.command';
 
 @Module({
   imports: [
@@ -23,6 +24,6 @@ import { ConsoleModule } from 'nestjs-console';
     TypeOrmModule.forFeature([BankAccount]),
   ],
   controllers: [AppController, BankAccountController],
-  providers: [AppService],
+  providers: [AppService, FixturesCommand],
 })
 export class AppModule {}
