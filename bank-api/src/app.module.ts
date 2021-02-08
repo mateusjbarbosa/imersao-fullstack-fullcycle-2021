@@ -8,6 +8,7 @@ import { BankAccountController } from './controllers/bank-account/bank-account.c
 import { ConsoleModule } from 'nestjs-console';
 import { FixturesCommand } from './fixtures/fixtures.command';
 import { PixKeyController } from './controllers/pix-key/pix-key.controller';
+import { PixKey } from './models/pix-key.model';
 
 @Module({
   imports: [
@@ -20,9 +21,9 @@ import { PixKeyController } from './controllers/pix-key/pix-key.controller';
       username: process.env.TYPEORM_USERNAME,
       password: process.env.TYPEORM_PASSWORD,
       database: process.env.TYPEORM_DATABASE,
-      entities: [BankAccount],
+      entities: [BankAccount, PixKey],
     }),
-    TypeOrmModule.forFeature([BankAccount]),
+    TypeOrmModule.forFeature([BankAccount, PixKey]),
   ],
   controllers: [AppController, BankAccountController, PixKeyController],
   providers: [AppService, FixturesCommand],
